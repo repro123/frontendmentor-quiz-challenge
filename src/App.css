@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-rubik: "Rubik", sans-serif;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-grey-50: #f4f6fa;
+  --color-grey-500: #626c7f;
+  --color-error: #ee5454;
+  --color-orange-400: #ff7e35;
+  --color-orange-50: #fff5ed;
+  --color-purple-600: #a729f5;
+  --color-purple-100: #f6e7ff;
+  --color-green-500: #2fd887;
+  --color-green-100: #e0fdef;
+  --color-blue-950: #2d3949;
+  --color-blue-900: #313e51;
+  --color-blue-850: #3b4d66;
+  --color-blue-500: #306aff;
+  --color-blue-300: #abc1e1;
+  --color-blue-100: #edf1f9;
+  --color-blue-50: #ebf0ff;
+
+  --color-background: var(--color-grey-50);
+  --color-foreground: var(--color-black);
+  --color-primary: var(--color-purple-600);
+  --color-theme-icon: var(--color-grey-500);
+  --color-card-background: var(--color-white);
+  --color-card-foreground: var(--color-blue-900);
+  --color-html: var(--color-orange-50);
+  --color-css: var(--color-green-100);
+  --color-js: var(--color-purple-100);
+  --color-accessibility: var(--color-blue-50);
+}
+
+@layer theme {
+  .dark {
+    --color-background: var(--color-blue-900);
+    --color-foreground: var(--color-white);
+    --color-theme-icon: var(--color-white);
+    --color-card-background: var(--color-blue-850);
+    --color-card-foreground: var(--color-white);
+  }
+}
+
+@layer base {
+  body {
+    @apply font-rubik min-h-dvh antialiased;
+  }
+
+  #root {
+    @apply grid place-items-center p-4 min-h-dvh;
+  }
+}
+
+@layer components {
+  .preset-1 {
+    @apply font-medium text-[9rem] leading-[100%];
+  }
+
+  .preset-1-mobile {
+    @apply font-medium text-[5.5rem] leading-[100%];
+  }
+
+  .preset-2-medium {
+    @apply font-medium text-[4rem] leading-[100%];
+  }
+
+  .preset-2-medium-mobile {
+    @apply font-medium text-[2.5rem] leading-[100%];
+  }
+
+  .preset-2-light {
+    @apply text-[4rem] leading-[100%];
+  }
+
+  .preset-2-light-mobile {
+    @apply text-[2.5rem] leading-[100%];
+  }
+
+  .preset-3-medium {
+    @apply font-medium text-[2.25rem] leading-[100%];
+  }
+
+  .preset-3-medium-mobile {
+    @apply font-medium text-[1.25rem] leading-[100%];
+  }
+
+  .preset-4-medium {
+    @apply font-medium text-[1.625rem] leading-[100%];
+  }
+
+  .preset-4-medium-mobile {
+    @apply font-medium text-[1.125rem] leading-[100%];
+  }
+
+  .preset-5-medium {
+    @apply font-medium text-[1.5625rem] leading-[150%];
+  }
+
+  .preset-5 {
+    @apply text-[1.5625rem] leading-[150%];
+  }
+
+  .preset-6 {
+    @apply text-[1.25rem] leading-[150%] italic;
+  }
+
+  .preset-5-mobile {
+    @apply text-[0.875rem] leading-[150%] italic;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+}
