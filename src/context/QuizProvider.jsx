@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { QuizContext } from "./QuizContext";
+import { useCallback } from "react";
 
 const QUIZ_META = {
   HTML: { bg: "bg-html" },
@@ -17,6 +18,7 @@ export function QuizProvider({ children }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   useEffect(() => {
     fetch("/data.json")
@@ -36,27 +38,42 @@ export function QuizProvider({ children }) {
 
   function handleAnswer(answer) {
     const correct = currentQuiz.questions[currentIndex].answer;
-    if (answer === correct) setScore((prev) => prev + 1);
-    setSelectedAnswer(answer);
+    if (answer === correct) {
+      setScore((prev) => prev + 1);
+    }
+    setHasSubmitted(true);
   }
 
-  function handleNext(navigate) {
+  function handleSelection(option) {
+    setSelectedAnswer(option);
+  }
+
+  function handleNext() {
     if (currentIndex + 1 >= currentQuiz.questions.length) {
       setIsFinished(true);
-      navigate("/results");
+      return "finished";
     } else {
       setCurrentIndex((prev) => prev + 1);
       setSelectedAnswer(null);
+      setHasSubmitted(false);
     }
   }
 
-  function startQuiz(quiz) {
+  // function startQuiz(quiz) {
+  //   setCurrentQuiz(quiz);
+  //   setCurrentIndex(0);
+  //   setScore(0);
+  //   setSelectedAnswer(null);
+  //   setIsFinished(false);
+  // }
+  const startQuiz = useCallback(function (quiz) {
     setCurrentQuiz(quiz);
     setCurrentIndex(0);
     setScore(0);
     setSelectedAnswer(null);
     setIsFinished(false);
-  }
+    setHasSubmitted(false);
+  }, []);
 
   return (
     <QuizContext.Provider
@@ -67,8 +84,10 @@ export function QuizProvider({ children }) {
         currentIndex,
         totalQuestions,
         selectedAnswer,
+        hasSubmitted,
         score,
         isFinished,
+        handleSelection,
         handleAnswer,
         handleNext,
         startQuiz,

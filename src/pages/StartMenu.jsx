@@ -1,16 +1,13 @@
 import AppContainer from "@/components/containers/AppContainer";
 import Loader from "@/components/ui/Loader";
 import { useQuiz } from "@/hooks/useQuiz";
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 function StartMenu() {
   const { quizData, loading, startQuiz, ...x } = useQuiz();
   console.log(x);
 
-  let navigate = useNavigate();
-
   function handleStartQuiz(quiz) {
-    navigate(`${quiz.title.toLowerCase()}`);
     startQuiz(quiz);
   }
 
@@ -37,11 +34,12 @@ function StartMenu() {
               key={data.title}
               className="bg-card-background text-card-foreground preset-4-medium-mobile md:preset-4-medium transition-all rounded-2xl shadow hover:-translate-y-1  duration-300"
             >
-              <button
-                type="button"
+              <Link
                 onClick={() => handleStartQuiz(data)}
+                to={`${data.title.toLowerCase()}`}
                 className="cursor-pointer p-4 flex items-center gap-4 w-full h-full"
               >
+                {" "}
                 <span
                   className={`${data.bg} p-1 rounded-md grid place-items-center`}
                 >
@@ -52,7 +50,7 @@ function StartMenu() {
                   />
                 </span>
                 <span>{data.title}</span>
-              </button>
+              </Link>
             </li>
           ))}
         </ul>
