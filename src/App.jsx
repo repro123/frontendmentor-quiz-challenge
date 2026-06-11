@@ -4,7 +4,7 @@ import RootLayout from "@/layout/RootLayout";
 import { ThemeProvider } from "@/context/ThemeProvider";
 import StartMenu from "@/pages/StartMenu";
 import { QuizProvider } from "@/context/QuizProvider";
-import HTML from "@/pages/HTML";
+import QuizPage from "@/pages/QuizPage";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Routes>
             <Route element={<RootLayout />}>
               <Route path="/" element={<StartMenu />} />
-              <Route path="html" element={<HTML />} />
+              <Route path=":subject" element={<QuizPage />} />
             </Route>
           </Routes>
         </QuizProvider>

@@ -25,7 +25,7 @@
   --color-blue-50: #ebf0ff;
 
   --color-background: var(--color-grey-50);
-  --color-foreground: var(--color-black);
+  --color-foreground: var(--color-blue-900);
   --color-primary: var(--color-purple-600);
   --color-theme-icon: var(--color-grey-500);
   --color-card-background: var(--color-white);
@@ -34,6 +34,7 @@
   --color-css: var(--color-green-100);
   --color-js: var(--color-purple-100);
   --color-accessibility: var(--color-blue-50);
+  --color-question-number: var(--color-grey-500);
 }
 
 @layer theme {
@@ -43,6 +44,7 @@
     --color-theme-icon: var(--color-white);
     --color-card-background: var(--color-blue-850);
     --color-card-foreground: var(--color-white);
+    --color-question-number: var(--color-blue-300);
   }
 }
 
@@ -81,11 +83,11 @@
     @apply text-[2.5rem] leading-[100%];
   }
 
-  .preset-3-medium {
+  .preset-3 {
     @apply font-medium text-[2.25rem] leading-[100%];
   }
 
-  .preset-3-medium-mobile {
+  .preset-3-mobile {
     @apply font-medium text-[1.25rem] leading-[100%];
   }
 

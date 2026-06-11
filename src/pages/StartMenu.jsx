@@ -1,11 +1,18 @@
 import AppContainer from "@/components/containers/AppContainer";
+import Loader from "@/components/ui/Loader";
 import { useQuiz } from "@/hooks/useQuiz";
 import { useNavigate } from "react-router";
 
 function StartMenu() {
-  const { quizData, loading } = useQuiz();
+  const { quizData, loading, startQuiz, ...x } = useQuiz();
+  console.log(x);
 
   let navigate = useNavigate();
+
+  function handleStartQuiz(quiz) {
+    navigate(`${quiz.title.toLowerCase()}`);
+    startQuiz(quiz);
+  }
 
   return (
     <AppContainer>
@@ -21,6 +28,8 @@ function StartMenu() {
         </p>
       </div>
 
+      {loading && <Loader />}
+
       {!loading && (
         <ul className=" grid gap-4 ">
           {quizData.map((data) => (
@@ -30,8 +39,8 @@ function StartMenu() {
             >
               <button
                 type="button"
-                onClick={() => navigate(`${data.title.toLowerCase()}`)}
-                className="cursor-pointer p-4 flex items-center gap-4"
+                onClick={() => handleStartQuiz(data)}
+                className="cursor-pointer p-4 flex items-center gap-4 w-full h-full"
               >
                 <span
                   className={`${data.bg} p-1 rounded-md grid place-items-center`}
