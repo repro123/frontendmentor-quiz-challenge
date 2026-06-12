@@ -67,6 +67,7 @@ export function QuizProvider({ children }) {
   //   setIsFinished(false);
   // }
   const startQuiz = useCallback(function (quiz) {
+    console.log("startQuiz called");
     setCurrentQuiz(quiz);
     setCurrentIndex(0);
     setScore(0);
@@ -74,6 +75,14 @@ export function QuizProvider({ children }) {
     setIsFinished(false);
     setHasSubmitted(false);
   }, []);
+
+  function resetQuiz() {
+    setCurrentQuiz(null);
+    setCurrentIndex(0);
+    setScore(0);
+    setSelectedAnswer(null);
+    setHasSubmitted(false);
+  }
 
   return (
     <QuizContext.Provider
@@ -91,6 +100,7 @@ export function QuizProvider({ children }) {
         handleAnswer,
         handleNext,
         startQuiz,
+        resetQuiz,
       }}
     >
       {children}

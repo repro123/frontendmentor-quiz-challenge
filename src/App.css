@@ -28,6 +28,8 @@
   --color-foreground: var(--color-blue-900);
   --color-primary: var(--color-purple-600);
   --color-primary-light: var(--color-purple-100);
+  --color-secondary: var(--color-orange-600);
+  --color-secondary-light: var(--color-orange-50);
   --color-theme-icon: var(--color-grey-500);
   --color-card-background: var(--color-white);
   --color-card-foreground: var(--color-blue-900);
