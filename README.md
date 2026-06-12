@@ -1,114 +1,283 @@
-# Frontend Mentor - Frontend quiz app
+# Frontend Mentor - Frontend Quiz App Solution
 
 ![Design preview for the Frontend quiz app coding challenge](./preview.jpg)
 
-## Welcome! 👋
+This is my solution to the [Frontend Quiz App challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/frontend-quiz-app-BE7xkzXQnU). The challenge was to build a responsive, accessible quiz experience where users can choose a subject, answer multiple-choice questions, track their progress, view their final score, and switch between light and dark themes.
 
-Thanks for purchasing this premium Frontend Mentor coding challenge.
+## Table of contents
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects. These premium challenges are perfect portfolio pieces, so please feel free to use what you create in your portfolio to show others.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+  - [Current status](#current-status)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Project structure](#project-structure)
+  - [Features](#features)
+  - [How the app works](#how-the-app-works)
+  - [What I learned](#what-i-learned)
+  - [Challenges I am still working on](#challenges-i-am-still-working-on)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Getting started](#getting-started)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-**To do this challenge, you need a strong understanding of HTML, CSS, and JavaScript.**
+## Overview
 
-## The challenge
+### The challenge
 
-Your challenge is to build out this quiz app and get it looking as close to the design as possible.
+Users should be able to:
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+- Select a quiz subject.
+- Select a single answer from each question from a choice of four.
+- See if they made a correct or incorrect choice when they submit an answer.
+- Move on to the next question after seeing the submitted result.
+- See a completed state with their final score after the final question.
+- Try the same quiz again.
+- Start a new quiz after completing one.
+- View a layout that adapts across mobile, tablet, and desktop screen sizes.
+- See hover, disabled, selected, correct, and incorrect states for interactive elements.
+- Navigate the app using semantic controls such as links, buttons, radio inputs, and labelled fields.
+- Change the app theme between light and dark mode.
 
-We provide the data in a local `data.json` file, so use that to populate the content for the quizzes.
+### Links
 
-Your users should be able to:
+- Solution URL: [Frontend Mentor solution](https://www.frontendmentor.io/solutions/quiz-app-with-react-qouter-CO1nECsCm2)
+- Live Site URL: [Vercel deployment](https://rerpo-frontendmentor-quiz-challenge.vercel.app/)
+- Repository: [GitHub repository](https://github.com/repro123/frontendmentor-quiz-challenge.git)
 
-- Select a quiz subject
-- Select a single answer from each question from a choice of four
-- See an error message when trying to submit an answer without making a selection
-- See if they have made a correct or incorrect choice when they submit an answer
-- Move on to the next question after seeing the question result
-- See a completed state with the score after the final question
-- Play again to choose another subject
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
-- Navigate the entire app only using their keyboard
-- **Bonus**: Change the app's theme between light and dark
+### Current status
 
-### Want some support on the challenge?
+The main quiz flow is working:
 
-[Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+- Users can choose from the available subjects.
+- Each subject page loads the related questions from the local JSON data.
+- Users can pick one answer, submit it, see feedback, and move forward.
+- The final result page shows the score and total number of questions.
+- Users can retry the current quiz or return to the start screen.
+- The light/dark theme toggle works and stores the selected theme in `localStorage`.
 
-## Where to find everything
+There are still some state and refresh behavior improvements I want to make. I have documented those in the [Challenges I am still working on](#challenges-i-am-still-working-on) section.
 
-Your task is to build out the project to the design file provided. You can download the Figma design file on the platform. **Please be sure not to share it with anyone else.** The design download comes with a `README.md` file as well to help you get set up.
+## My process
 
-All the required assets for this project are in the `/assets` folder. The images are already exported for the correct screen size and optimized. Some are reusable at multiple screen sizes. So if you don't see an image in a specific folder, it will typically be in another folder for that page.
+### Built with
 
-We also include variable and static font files for the required fonts for this project. You can choose to either link to Google Fonts or use the local font files to host the fonts yourself.
+- Semantic HTML5 markup
+- React components
+- React Context API
+- React hooks
+- React Router
+- Vite
+- Tailwind CSS v4
+- CSS custom properties
+- Mobile-first responsive layout
+- Local JSON data
+- `localStorage` for theme preference
+- Vercel for deployment
 
-The design system in the design file will give you more information about the various colors, fonts, and styles used in this project. Our fonts always come from [Google Fonts](https://fonts.google.com/).
+### Project structure
 
-## Using AI coding assistants
+```text
+quiz-app/
+|-- public/
+|   |-- data.json
+|   `-- assets/images/
+|-- src/
+|   |-- assets/images/
+|   |-- components/
+|   |   |-- background/
+|   |   |-- containers/
+|   |   |-- cta-buttons/
+|   |   |-- header/
+|   |   |-- icons/
+|   |   |-- number-of-questions/
+|   |   |-- options/
+|   |   |-- question/
+|   |   |-- theme-toggle/
+|   |   `-- ui/
+|   |-- context/
+|   |-- hooks/
+|   |-- layout/
+|   |-- lib/
+|   |-- pages/
+|   |-- App.css
+|   |-- App.jsx
+|   `-- main.jsx
+|-- package.json
+`-- vite.config.js
+```
 
-We've included two files to help you if you're using AI coding assistants (like Claude, GitHub Copilot, Cursor, etc.) while working on this challenge:
+The app is split into small reusable components. Page-level components handle the main screens, context providers manage shared quiz and theme state, and UI components such as buttons, loaders, logos, and progress bars keep the interface consistent.
 
-- `AGENTS.md` - Contains detailed instructions for AI assistants on how to help you with this challenge. It's tailored to this challenge's difficulty level, so the AI will provide guidance appropriate to your learning stage—offering more support for beginner challenges and encouraging more independence on advanced ones.
-- `CLAUDE.md` - A pointer file that directs Claude-based tools to the AGENTS.md instructions.
+### Features
 
-**How to use them:** You don't need to do anything! These files are automatically detected by most AI coding tools. The AI will read them and adjust its behavior to be a better learning partner—guiding you toward solutions rather than just giving you the answers.
+#### Subject selection
 
-**Note:** These files are designed to help you *learn*, not to do the work for you. The AI is instructed to ask questions, give hints, and explain concepts rather than writing complete solutions.
+The start screen fetches quiz subjects from `public/data.json` and renders each subject as a clickable option. Each subject includes a title, icon, and background color class.
 
-## Building your project
+#### Quiz routing
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+The app uses React Router routes for:
 
-1. Separate the `starter-code` from the rest of this project and rename it to something meaningful for you. Initialize the codebase as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/). **⚠️ IMPORTANT ⚠️: There are already a couple of `.gitignore` files in this project. Please do not remove them or change the content of the files. If you create a brand new project, please use the `.gitignore` files provided in your new codebase. This is to avoid the accidental upload of the Figma design file to GitHub. With these premium challenges, please be sure not to share the Figma design file in your GitHub repo. Thanks!**
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+- `/` - start menu.
+- `/:subject` - selected quiz subject page.
+- `/results` - completed quiz result page.
 
-## Deploying your project
+The subject name in the URL is used to find the matching quiz. This makes quiz pages directly addressable by subject, for example `/html` or `/javascript`.
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+#### Quiz state
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+The `QuizProvider` manages:
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://www.frontendmentor.io/guides/hosting-your-solution).
+- Loaded quiz data.
+- Loading state.
+- Current quiz.
+- Current question index.
+- Selected answer.
+- Score.
+- Submitted state.
+- Finished state.
 
-## Create a custom `README.md`
+This keeps the quiz logic centralized and allows components like `Question`, `Options`, `SubmitBtn`, `NextBtn`, and `ResultPage` to consume the same quiz state through the custom `useQuiz` hook.
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+#### Answer selection and feedback
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+Each answer option is rendered with a native radio input inside a label. After submission:
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+- The selected correct answer receives a success style.
+- The selected wrong answer receives an error style.
+- If the selected answer is wrong, the correct answer is also shown.
+- Correct and incorrect icons are displayed for visual feedback.
+- Options are disabled after submission so users cannot change their answer before continuing.
 
-## Submitting your solution
+#### Progress indicator
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://www.frontendmentor.io/guides/how-to-submit-solutions) for tips on how to do this.
+The progress bar calculates progress using the current question index and total number of questions:
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+```js
+const percentage = ((currentIndex + 1) / totalQuestions) * 100;
+```
 
-**⚠️ IMPORTANT ⚠️: With these premium challenges, please be sure not to upload the Figma design file to GitHub when you're submitting to the platform and sharing it around. If you've created a brand new project, the easiest way to do that is to copy across the `.gitignore` provided in this starter project.**
+It also includes progress-related ARIA attributes so assistive technologies can understand the user's current position in the quiz.
 
-## Sharing your solution
+#### Theme toggle
 
-There are multiple places you can share your solution:
+The app supports light and dark themes with Tailwind's custom dark variant and CSS custom properties. The selected theme is stored in `localStorage`, and the `dark` class is toggled on the root HTML element.
 
-1. Share your solution page in the **#finished-projects** channel of our [community](https://www.frontendmentor.io/community). 
-2. Share on [X (formerly Twitter)](https://x.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in your post. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on [LinkedIn](https://www.linkedin.com/company/frontend-mentor/).
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+#### Responsive background
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+The background component chooses mobile, tablet, or desktop background artwork using media queries. It renders light and dark background layers and fades between them when the theme changes.
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+### How the app works
 
-## Got feedback for us?
+1. The user lands on the start menu.
+2. `QuizProvider` fetches the quiz data from `/data.json`.
+3. The start menu renders each quiz subject.
+4. The user selects a subject.
+5. The app stores that quiz as the current quiz and navigates to the subject route.
+6. The quiz page renders the current question, answer options, progress bar, and submit button.
+7. The user selects one option.
+8. The user submits the answer.
+9. The app checks the selected answer against the correct answer.
+10. The score is updated if the answer is correct.
+11. The UI shows correct or incorrect feedback.
+12. The user moves to the next question.
+13. After the final question, the user navigates to the results page.
+14. The result page displays the final score and options to retry or start a new quiz.
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+### What I learned
 
-**Have fun building!** 🚀
+This project helped me practice organizing a React app around shared state without making every component responsible for too much logic. Moving quiz behavior into `QuizProvider` made the UI components easier to read because they can focus mostly on rendering and user interaction.
+
+I also learned more about combining route state and application state. The selected subject can be recovered from the URL, which makes direct subject routes possible. At the same time, I saw that relying only on in-memory context creates problems when the user refreshes the page or uses browser navigation.
+
+Another useful lesson was theme handling. Persisting the dark mode preference in `localStorage` works, but applying the dark class only after React mounts can cause a flash of the wrong theme on refresh. That showed me the difference between persisting state and applying that state early enough in the page lifecycle.
+
+### Challenges I am still working on
+
+#### Flash of unstyled content in dark mode
+
+When the site is refreshed while dark mode is active, there can be a brief flash of the light theme before the dark theme is applied. This happens because the stored theme is read inside the React app, and the `dark` class is applied after the initial HTML and CSS have already started rendering.
+
+The improvement I want to make is to apply the saved theme before React renders. A small inline script in `index.html` could read `localStorage` immediately and add the `dark` class to `document.documentElement` before the first paint.
+
+#### Quiz state persistence on refresh
+
+The theme preference persists because it is saved in `localStorage`, but the quiz progress is currently stored in React context state. That means progress can be lost when the page refreshes.
+
+The app currently stores values like the current quiz, selected answer, current question index, score, and submitted state in memory. To make refresh behavior stronger, I want to persist the active quiz session to either `localStorage`, `sessionStorage`, or URL state.
+
+#### Browser back and forward navigation
+
+The app writes the current question number to the URL search params, for example `?q=2`, but it does not fully restore quiz state from that query parameter yet. Because of that, browser back and forward navigation does not behave like a complete history of quiz progress.
+
+A future improvement would be to make the URL and quiz state work together more intentionally:
+
+- Restore `currentIndex` from the `q` query parameter.
+- Decide whether submitted answers and scores should also be encoded or stored.
+- Prevent invalid URL states, such as a result page with no current quiz.
+- Make refresh, direct links, and browser navigation feel consistent.
+
+#### Error message for empty submissions
+
+The current submit button is disabled when no answer is selected. This prevents empty submissions, but the original challenge also asks for an error message when trying to submit without choosing an answer. I want to revisit this interaction and decide whether to keep the disabled button pattern, add a visible validation message, or combine both.
+
+### Continued development
+
+I want to continue improving:
+
+- State persistence across refreshes.
+- URL-driven quiz state.
+- Browser history behavior.
+- Preventing theme flashes before React mounts.
+- Reducing debug `console.log` calls before final production polish.
+- Adding tests for quiz flow, route behavior, scoring, and theme persistence.
+- Strengthening keyboard and screen reader feedback for answer validation.
+- Handling invalid routes and invalid quiz subjects more gracefully.
+
+### Useful resources
+
+- [Frontend Mentor](https://www.frontendmentor.io/) - The challenge platform and design source.
+- [React documentation](https://react.dev/) - Helpful for component structure, hooks, and context patterns.
+- [React Router documentation](https://reactrouter.com/) - Useful for route params, navigation, and search params.
+- [Tailwind CSS documentation](https://tailwindcss.com/) - Used for styling, custom theme tokens, responsive utilities, and dark mode behavior.
+- [Vite documentation](https://vite.dev/) - Used for local development, builds, and project tooling.
+
+## Getting started
+
+To run the project locally:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+To create a production build:
+
+```bash
+pnpm build
+```
+
+To preview the production build locally:
+
+```bash
+pnpm preview
+```
+
+To run linting:
+
+```bash
+pnpm lint
+```
+
+## Author
+
+- GitHub - [@repro123](https://github.com/repro123)
+- Frontend Mentor - [@repro123](https://www.frontendmentor.io/profile/repro123)
+- Solution - [Quiz app with React Router](https://www.frontendmentor.io/solutions/quiz-app-with-react-qouter-CO1nECsCm2)
+
+## Acknowledgments
+
+Thanks to Frontend Mentor for the challenge, assets, and design brief. This project was a useful way to practice React state management, routing, theme persistence, and responsive UI implementation in a realistic frontend workflow.
